@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>英语在线</title>
+
+<link href="{CSS_PATH}online/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="{JS_PATH}online/texiao.js"></script>
+
+<script type="text/javascript" src="{JS_PATH}jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="{JS_PATH}jquery-ui-1.7.3.custom.min.js"></script>
+<script  type="text/javascript" src="{JS_PATH}jquery.js" ></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".guide_left table  a:eq(0)").mouseover(function(){
+  $(".guide_left table a").css({"background-image":"url({IMG_PATH}online/c_anniu2.gif)","font-weight":"normal"});
+  $(this).css({"background-image":"url({IMG_PATH}online/c_anniu1.gif)","font-weight":"bold"});  
+  $(".mid1").css("display","none");
+  $(".mid2").css("display","none");
+
+    $(".mid").css("display","block");
+ });
+ $(".guide_left table a:eq(1)").mouseover(function(){
+  $(".guide_left table a").css({"background-image":"url({IMG_PATH}online/c_anniu2.gif)","font-weight":"normal"});
+  $(this).css({"background-image":"url({IMG_PATH}online/c_anniu1.gif)","font-weight":"bold"});  
+  $(".mid").css("display","none");
+  $(".mid2").css("display","none");
+    $(".mid1").css("display","block");
+ 
+});
+ $(".guide_left table a:eq(2)").mouseover(function(){
+  $(".guide_left table a").css({"background-image":"url({IMG_PATH}online/c_anniu2.gif)","font-weight":"normal"});
+  $(this).css({"background-image":"url({IMG_PATH}online/c_anniu1.gif)","font-weight":"bold"});  $(".mid").css("display","none");
+  $(".mid2").css("display","block");
+  $(".mid1").css("display","none");
+ 
+ 
+});
+});
+</script>
+
+</head>
+<body>
+{template "content","header_s"}
+
+{template "content","right_top"}
+<div class="quyu_2">
+  <div class="quyu2_left">
+    <div class="quyu2_left_tit"><span><a>{catpos($catid)}</a></span></div>
+   <div class="guide_left">
+   {pc:content action="lists" catid="$catid" num="25" order="id DESC" page="$page"}
+	 {loop $data $r}
+	  <div style="float:left; width:600px; line-height:30px; font-size:14px;">
+	 <a href="{$r[url]}"> {$r[title]}</a> <span style="margin-left:20px; font-size:12px; color:#999999">{date('Y-m-d',$r[inputtime])}</span>
+	  </div>
+  {/loop}
+ {/pc}
+	  
+   </div> 
+  </div>
+  
+  
+  {template "content","right_content"}
+  </div>
+</div>
+{template "content","footer_s"}
+</body>
+</html>

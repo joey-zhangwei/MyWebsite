@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>英语在线</title>
+
+<link href="{CSS_PATH}online/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="{JS_PATH}online/texiao.js"></script>
+
+<script type="text/javascript" src="{JS_PATH}jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="{JS_PATH}jquery-ui-1.7.3.custom.min.js"></script>
+<script  type="text/javascript" src="{JS_PATH}jquery.js" ></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".guide_left table  a:eq(0)").mouseover(function(){
+  $(".guide_left table a").css({"background-image":"url({IMG_PATH}online/c_anniu2.gif)","font-weight":"normal"});
+  $(this).css({"background-image":"url({IMG_PATH}online/c_anniu1.gif)","font-weight":"bold"});  
+  $(".mid1").css("display","none");
+  $(".mid2").css("display","none");
+
+    $(".mid").css("display","block");
+ });
+ $(".guide_left table a:eq(1)").mouseover(function(){
+  $(".guide_left table a").css({"background-image":"url({IMG_PATH}online/c_anniu2.gif)","font-weight":"normal"});
+  $(this).css({"background-image":"url({IMG_PATH}online/c_anniu1.gif)","font-weight":"bold"});  
+  $(".mid").css("display","none");
+  $(".mid2").css("display","none");
+    $(".mid1").css("display","block");
+ 
+});
+ $(".guide_left table a:eq(2)").mouseover(function(){
+  $(".guide_left table a").css({"background-image":"url({IMG_PATH}online/c_anniu2.gif)","font-weight":"normal"});
+  $(this).css({"background-image":"url({IMG_PATH}online/c_anniu1.gif)","font-weight":"bold"});  $(".mid").css("display","none");
+  $(".mid2").css("display","block");
+  $(".mid1").css("display","none");
+ 
+ 
+});
+});
+</script>
+
+</head>
+<body>
+{template "content","header_s"}
+<div class="quyu_2">
+ <div class="quyu2_left">
+   <div class="quyu2_left_tit"><span><a>教师个人主页</a></span></div>
+   <div style="width:635px; margin:0 auto; margin-top:10px; color:#757575; line-height:1.8em;">
+       
+{pc:get sql="SELECT * FROM v9_linkage a, v9_member b,v9_member_jiangs c where b.userid=$uid and b.userid=c.userid and b.modelid=12 and c.wenp=a.linkageid" return="datas" order="listorder DESC"} 
+{loop $datas $key $val} 
+
+ <div class="touxiang_pic">
+ 
+ <span style="float:left; width:140px; height:140px;"><img src="{get_memberavatar($val['phpssouid'], '', 180)}" width="140" height="140" /></span>
+<span style="float:left; width:140px; height:30px; margin:20px 10px 10px 0px;">
+{if $val[shengy]!=''}
+<object width="150" height="24" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+<param value="{APP_PATH}/uploadfile/swf/3.swf?soundFile={$val[shengy]}&amp;bg=0xCDDFF3&amp;leftbg=0x357DCE&amp;lefticon=0xF2F2F2&amp;rightbg=0x357DCE&amp;rightbghover=0x4499EE&amp;righticon=0xF2F2F2&amp;righticonhover=0xFFFFFF&amp;text=0x357DCE&amp;slider=0x357DCE&amp;track=0xFFFFFF&amp;border=0xFFFFFF&amp;loader=0x8EC2F4" name="movie">
+<param value="high" name="quality">
+<param name="wmode" value="transparent">
+<embed width="150" height="24" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="{APP_PATH}/uploadfile/swf/3.swf?soundFile={$val[shengy]}&amp;bg=0xCDDFF3&amp;leftbg=0x357DCE&amp;lefticon=0xF2F2F2&amp;rightbg=0x357DCE&amp;rightbghover=0x4499EE&amp;righticon=0xF2F2F2&amp;righticonhover=0xFFFFFF&amp;text=0x357DCE&amp;slider=0x357DCE&amp;track=0xFFFFFF&amp;border=0xFFFFFF&amp;loader=0x8EC2F4">
+</object>
+{/if}
+</span>
+<input type="button" onclick="javascript:history.go(-1);" value="返回列表">
+ </div>
+      
+<div class="zhuye_main">
+	     <div class="zhuye_tit">{$val[nickname]}</div>
+		 <p style="padding-left:10px; width:460px; line-height:30px; padding-top:10px;">
+
+姓　名：{$val[nickname]}<br />
+性　别：	男性<br />
+资&nbsp;&nbsp;&nbsp;历：{$val[zili]}<br />
+学 &nbsp;历：	{$val[name]}<br />
+爱　好：	<br />
+
+{$val[jianjie]}</p>
+
+<table width="400" border="1" bordercolor="#d9d9d9" style="float:left;">
+ <tr>
+    <td colspan="3" align="right"><a href="{APP_PATH}index.php?m=content&c=index&a=make_look&uid={$val[userid]}&uname={$val[username]}" target="_blank">点击预约该老师</a></td>
+ </tr>
+ <tr>
+    
+    <td width="120"><div align="center">日期	</div></td>
+	<td width="100" height="30"><div align="center">时间</div></td>
+	<td width="120"><div align="center">预约情况</div></td>
+ </tr>
+
+{php $nowdate=date("Y-m-d",mktime(0,0,0,date("m"),date("d")-1,date("Y")));}
+ {php $usn=$val[username];}
+ {pc:get sql="select * from v9_kecheng a,v9_kecheng_data b,v9_linkage c where a.id=b.id and a.username = '$usn'  and c.linkageid=b.time and b.dates>'$nowdate'" return="datan" order="listorder a.id DESC"} 
+ {loop $datan $key $vals} 
+  <tr>
+    <td><div align="center">{$vals[dates]}</div></td>
+    <td><div align="center">{$vals[name]}</div></td>
+    
+    <td>
+	 {if $vals[is_yuyue]==0}
+	 
+	<div align="center" style="padding-left:22px;">
+	<input type="button" onclick="window.location.href='{APP_PATH}index.php?m=content&c=index&a=lists&catid=15&id={$vals[id]}&d=1'" style="background-image:url({IMG_PATH}online/anniu_q.jpg);height:17px;width:66px;border:0"/>
+	</div>
+	{/if}
+	 {if $vals[is_yuyue]==2}
+	 <div align="center" style="padding-left:22px;">
+	<input type="button"style="background-image:url({IMG_PATH}online/anniu_w.jpg);height:17px;width:66px;border:0"/>
+	</div>
+	 {/if}
+	</td>    
+  </tr>
+ {/loop}
+{/pc} 
+
+</table>
+       </div>
+   </div> 
+  </div>
+
+{/loop}
+{/pc}
+
+
+  {template "content","right_content"}
+  </div>
+</div>
+
+{template "content","footer_s"}
+</body>
+</html>

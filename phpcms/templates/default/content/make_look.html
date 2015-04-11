@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>英语在线</title>
+
+<link href="{CSS_PATH}online/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="{JS_PATH}online/texiao.js"></script>
+
+<script type="text/javascript" src="{JS_PATH}jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="{JS_PATH}jquery-ui-1.7.3.custom.min.js"></script>
+
+
+</head>
+<body>
+{template "content","header_s"}
+
+{template "content","right_top"}
+
+<div class="quyu_2">
+  <div class="quyu2_left">
+    <div class="quyu2_left_tit"><span><a>简单预约</a></span><span class="more"></span></div>
+	  <div style="width:635px; margin:0 auto; margin-top:10px; color:#757575; line-height:1.8em;">
+	<p style="width:635px; margin-top:10px; color:#757575;">   
+	 为了减少广大英语学习爱好者的课程费用，打造全国在线VIP一对一英语口语学习的最低学费，降低客服的成本，我们创立了一个全自动的学员预约上课C2C平台，完全根据自己的需求，自己预约课程，自己选择老师上课!</p>
+
+<div style="width:635px; float:left;">
+<p style="margin-top:10px; width:635px; "><img src="{IMG_PATH}online/anniu_q.jpg" />：可以预约：请点击预约</p>
+<p style=" width:635px;"><img src="{IMG_PATH}online/anniu_w.jpg" />：不能预约：已被其他学员预约或预约时间已过</p>
+<p style="color:#ff0000;">预约课程请在该时间段上课的15分钟之前；取消课程请在上课前提前四个小时取消！</p>
+</div>
+<div class="jiaoshiliebiao">
+
+<!-- <select>
+  <option value="06:00">06:00</option>
+  <option value="06:30">06:30</option>
+</select>---
+<select>
+  <option value="06:00">06:00</option>
+  <option value="06:30">06:30</option>
+</select>
+<input name="" type="submit" value=" 男 " />
+<input name="" type="submit" value=" 女 " />
+<input name="" type="submit"  class="shaixuan" value="筛选" />
+-->
+<span align="right" style="padding-left:470px;"><a href="{APP_PATH}index.php?m=content&c=index&a=make_look&str_date={$end_date}&uid={$uid}&uname={$uname}">下一周</a></span>
+</div>
+
+
+
+
+
+
+<table width="635" border="1" bordercolor="#d9d9d9" style="float:left;">
+ <tr> 
+  <td width="100" height="80"><div align="center"></div></td>
+
+
+
+
+{loop $date_arr $keys $val} 	
+
+    <td width="80">
+	
+	<div style="width:70px; height:auto; margin:0 auto;">
+		<span style="width:60px; line-height:20px;">
+		
+			{$val[data]}</br>
+		    星期{if $keys=='1'}
+			     一
+				{/if}
+				{if $keys=='2'}
+				二
+				{/if}
+				{if $keys=='3'}
+				三
+				{/if}
+				{if $keys=='4'}
+				四
+				{/if}
+				{if $keys=='5'}
+				五
+				{/if}
+				{if $keys=='6'}
+				六
+				{/if}
+				{if $keys=='7'}
+				天
+				{/if}
+		</span>
+	</div>
+	</td>
+	
+  {/loop}
+
+  </tr> 
+
+{pc:get sql="SELECT * FROM v9_linkage where keyid= 3360" return="datas" num=35 order="listorder DESC"} 
+{loop $datas $key $times} 
+
+ <tr> 
+   <td> <div align="center">{$times[name]}</div> </td>	
+{loop $date_arr $keys $vals} 	
+	
+{php $date_day=$vals[data]; $tim=$times[linkageid]}	
+{pc:get sql="select * from v9_kecheng a,v9_kecheng_data b where `dates` = '$date_day' and a.id=b.id and a.username='$uname' and b.time=$tim $where" return="datas" order="listorder DESC"} 
+
+{if count($datas)!=0}
+
+		{loop $datas $key $val}
+			 {if $val[is_yuyue]==0}
+								<td>
+								<div align="center" style="padding-left:5px;">
+								
+						<input type="button" onclick="window.location.href='{APP_PATH}index.php?m=content&c=index&a=lists&catid=15&id={$val[id]}&d=1'"style="background-image:url({IMG_PATH}online/anniu_q.jpg);height:17px;width:66px;border:0"/>
+								</div>
+								</td>
+							{/if}
+							 {if $val[is_yuyue]==1}
+								<td>
+								<div align="center" style="padding-left:5px;">
+								
+						<input type="button" onclick="window.location.href='{APP_PATH}index.php?m=content&c=index&a=lists&catid=15&id={$val[id]}&d=1'"style="background-image:url({IMG_PATH}online/anniu_q.jpg);height:17px;width:66px;border:0"/>
+								</div>
+								</td>
+							{/if}
+					
+							 {if $val[is_yuyue]==2}
+								<td>
+								<div align="center" style="padding-left:5px;">
+								<input type="button"style="background-image:url({IMG_PATH}online/anniu_w.jpg);height:17px;width:66px;border:0"/>
+								</div>
+								</td>
+							{/if}
+		
+ 		
+			
+		
+		
+		{/loop}
+		
+	{else}
+	 <td><div align="center">---</div></td>
+	{/if}
+	
+	{/pc}
+	
+	{/loop}
+
+	</tr>
+{/loop}
+{/pc} 
+  
+  
+  <!---
+  <tr>
+    <td><div align="center">22:30</div></td>
+	
+    <td><div align="center">---</div></td>
+	
+    <td><div align="center" style="padding-left:22px;">
+	<input type="button" onclick="window.location.href='1.html'"   style="background-image:url({IMG_PATH}online/anniu_w.jpg);height:17px;width:66px;border:0"/></div></td>
+    <td><div align="center" style="padding-left:22px;"><input type="button" onclick="window.location.href='1.html'"   style="background-image:url({IMG_PATH}online/anniu_q.jpg);height:17px;width:66px;border:0"/></div></td>
+    <td><div align="center" style="padding-left:22px;"><input type="button" onclick="window.location.href='1.html'"   style="background-image:url({IMG_PATH}online/anniu_q.jpg);height:17px;width:66px;border:0"/></div></td>
+    <td><div align="center" style="padding-left:22px;"><input type="button" onclick="window.location.href='1.html'"   style="background-image:url({IMG_PATH}online/anniu_q.jpg);height:17px;width:66px;border:0"/></div></td>
+  </tr>
+  -->
+</table> <div id="pages" class="dh">{php echo $pages;}</div> 
+
+</div>
+  </div>
+{template "content","right_content"}
+ 
+
+  </div>
+</div>
+{template "content","footer_s"}
+</body>
+</html>

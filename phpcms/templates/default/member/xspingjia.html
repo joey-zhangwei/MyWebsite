@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>英语在线</title>
+<link rel="stylesheet" href="{CSS_PATH}online/style.css" type="text/css" />
+<link rel="stylesheet" href="{CSS_PATH}online/style.css" type="text/css" />
+<link rel="stylesheet" href="{CSS_PATH}online/lrtk.css" type="text/css" />
+<SCRIPT type=text/javascript src="{js_PATH}online/index_solid.js"></SCRIPT>
+<script language="javascript" src="{js_PATH}online/texiao.js" type="text/javascript"></script>
+<style>
+.tab table td{padding-left:5px;padding-right:5px;}</style>
+</head>
+<body>
+{template "member","header_s"}
+{template "member","left_s"}
+
+	        <div class="home_r_xia">
+                <div  class="home_tit_r">课程评论信息</div>
+                <div class="tab">
+                    <table style="padding-bottom:10px; border: solid 1px #CCCCCC">
+                        <tr height="27px" bgcolor="#b8c5d5">
+                            <td width="189px">课程</td>
+                            <td width="231px">给老师的评价</td>
+                            <td width="231px">来自老师的评价</td>
+                            <td width="102px">课程时间</td>
+                        </tr>
+						
+
+  
+  
+
+
+{if $memberinfo[groupid]==2}
+<!--学生的 -->
+{pc:get sql="SELECT *FROM  v9_kecheng_data a,v9_kecheng c,v9_linkage d WHERE a.come_id = '$memberinfo[userid]'  and a.is_yuyue=2 and a.id=c.id and d.linkageid=a.time " return="datan"} 
+{loop $datan $key $val}		
+                        <tr>
+                            <td width="189px" height="93px"style="text-align:center" >{$val[title]}</td>
+						    <td width="231px" height="93px"style="text-align:left">
+							<div class="tab-1">							
+{pc:get sql="SELECT *FROM  v9_comment a,v9_comment_data_1 b WHERE a.title='$val[title]' and a.commentid = b.commentid  and b.userid = '$memberinfo[userid]'" return="datak" num="1" order="listorder DESC"} 
+							
+							{if !$datak[0][content]}
+								<a href="{$val[url]}">点击进行评价</a>
+							{else}
+								{$datak[0][content]}
+							{/if}
+							
+							{/pc}
+							
+							</div>
+							</td>
+							
+							 <td width="231px" height="93px"style="text-align:left">
+							 
+{pc:get sql="SELECT *FROM  v9_comment a,v9_comment_data_1 b WHERE a.title='$val[title]' and a.commentid =b.commentid  and b.userid != '$memberinfo[userid]'" return="datak" num="1" order="listorder DESC"} 
+							
+							{if !$datak[0][content]}
+								老师还没有评价
+							{else}
+								{$datak[0][content]}
+							{/if}
+							
+							{/pc}
+							
+							
+							
+						 </td>
+								 <td width="102px">{$val[dates]}<br />{$val[name]}</td>
+                        </tr>
+						
+		{/loop}				
+	{/pc}		
+	
+{else}
+<!--老师的 -->
+{pc:get sql="SELECT *FROM  v9_kecheng_data a,v9_kecheng c,v9_linkage d WHERE c.username = '$memberinfo[username]'  and a.is_yuyue=2 and a.id=c.id and d.linkageid=a.time " return="datan"} 
+{loop $datan $key $val}		
+                        <tr>
+                            <td width="189px" height="93px"style="text-align:center" >{$val[title]}</td>
+						    <td width="231px" height="93px"style="text-align:left">
+							<div class="tab-1">							
+{pc:get sql="SELECT *FROM  v9_comment a,v9_comment_data_1 b WHERE a.title='$val[title]' and a.commentid = b.commentid  and b.userid != '$memberinfo[userid]'" return="datak" num="1" order="listorder DESC"} 
+							
+							{if !$datak[0][content]}
+								还没有评价
+							{else}
+								{$datak[0][content]}
+							{/if}
+							
+							{/pc}
+							
+							</div>
+							</td>
+							
+							 <td width="231px" height="93px"style="text-align:left">
+							 
+{pc:get sql="SELECT *FROM  v9_comment a,v9_comment_data_1 b WHERE a.title='$val[title]' and a.commentid =b.commentid  and b.userid = '$memberinfo[userid]'" return="datak" num="1" order="listorder DESC"} 
+							
+							{if !$datak[0][content]}
+								<a href="{$val[url]}">点击进行评价</a>
+							{else}
+								{$datak[0][content]}
+							{/if}
+							
+							{/pc}
+							
+							
+							
+						 </td>
+								 <td width="102px">{$val[dates]}<br />{$val[name]}</td>
+                        </tr>
+	{/loop}				
+	{/pc}		
+						
+
+
+{/if}	
+	
+	
+                       <!-- <tr>
+                            <td width="189px"height="93px" style="text-align:center">课程名称</td>
+                            <td width="231px" height="93px"style="text-align:left">好看和港口和公开和公间阿虎好看和港口和公间阿虎工好看和港口和公间阿虎行卡恢间阿虎</td>
+                            <td width="231px" height="93px"style="text-align:left">好看和港口和公开和公间阿虎好看和港口和公间阿虎好看和港口和公间阿虎工行卡间阿虎</td>
+                            <td width="102px" height="93px">2012—6-11</td>
+                        </tr>
+                       -->
+                       
+                    </table>
+					
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{template "member","footer_s"}
+</body>
+</html>

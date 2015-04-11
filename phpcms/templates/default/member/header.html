@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>phpcmsV9 - {L('member','','member').L('manage_center')}</title>
+<link href="{CSS_PATH}reset.css" rel="stylesheet" type="text/css" />
+<link href="{CSS_PATH}member.css" rel="stylesheet" type="text/css" />
+<link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
+<script type="text/javascript" src="{JS_PATH}member_common.js"></script>
+
+
+<link href="{CSS_PATH}online/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="{JS_PATH}online/texiao.js"></script>
+
+
+
+{if isset($show_validator)}
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+{/if}
+</head>
+<body>
+<div class="top">
+  <div class="top_main">
+    <div class="logo_quyu">
+	<div class="logo"><a href="#"><img src="{IMG_PATH}online/logo.jpg" /></a></div>
+	<div class="kuang"></div>
+	<div class="biaoyu"><img src="{IMG_PATH}online/biaoyu.jpg" /></div>
+	</div>
+    <div class="dianhua_quyu">
+	  <div class="zhuce">
+	    <ul>
+		<li><a href="#">登录</a> |</li>
+		<li><a href="#">注册</a> |</li>
+		<li><a href="index.php?m=member&c=index&a=logout">退出</a> |</li>
+		<li><a href="#">设为首页</a></li>
+		</ul>
+	  </div>
+	  <div class="dianhua"><img src="{IMG_PATH}online/dianhua.jpg" /></div>
+	</div>
+  </div>
+</div>
+<div class="dh">
+  <div class="dh_main">
+    <ul>
+	  <li class="wu"><a href="{APP_PATH}index.php">首页</a></li>
+	  <li><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=12">初始向导</a></li>
+	  <li><a href="#">会话套餐</a></li>
+	  <li><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=10">讲师阵营</a></li>
+	  <li><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=15">简单预约</a></li>
+	  <li><a href="#">我的主页</a></li>
+	  <li><a href="#">注册登录</a></li>
+	</ul>
+	<a href="#"><img src="{IMG_PATH}online/rss.jpg" /></a>
+	<div class="yuyue"><a href="#"><img src="{IMG_PATH}online/yuyue.jpg" /></a></div>
+  </div>
+</div>

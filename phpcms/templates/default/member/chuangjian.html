@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>英语在线</title>
+
+<link rel="stylesheet" href="{CSS_PATH}online/style.css" type="text/css" />
+<link rel="stylesheet" href="{CSS_PATH}online/lrtk.css" type="text/css" />
+
+<SCRIPT type=text/javascript src="{js_PATH}online/index_solid.js"></SCRIPT>
+<script language="javascript" src="{js_PATH}online/texiao.js" type="text/javascript"></script>
+
+
+<style>
+.anniu{ background:url({IMG_PATH}online/chuangjian.jpg) no-repeat; width:139px;height:36px; border:0}
+.home_r_xia td{text-align:center; border:#a6a4a4 1px solid;height:40px}
+.ff{background:#f9f9f9; color:#f0841a;font-weight:700;font-size:14px;}
+.home_r_xia table{margin-top:40px}
+.anniu1{background-color:transparent; border:none;padding:0}
+</style>
+
+</head>
+
+<body>
+
+{template "member","header_s"}
+{template "member","left_s"}
+
+
+<div class="home_r_xia">
+<div  class="home_tit_r"></div>
+<div style="margin-left:100px; margin-top:20px"><input onclick="window.location.href='{APP_PATH}index.php?m=member&c=content&a=publish'"type="button"  class="anniu"/></div>
+<table width="600" border="1" align="center">
+  <tr>
+    <td class="ff">课程</td>
+    <td class="ff">日期</td>
+    <td class="ff">时间</td>
+    <td class="ff">功能操作</td>
+  </tr>
+  	{loop $datas $info} 
+		  <tr>
+			<td>{str_cut($info['title'], 60)}</td>
+			{php  $ss=$info[id];}
+{pc:get sql="SELECT * FROM v9_linkage a, v9_kecheng_data b where b.id=$ss and b.time=a.linkageid $kc_where" return="datas"} 
+
+{loop $datas $key $val}  
+           {if $val['dates']!=''}
+			<td>{$val['dates']}</td>
+			<td>{$val['name']}</td>	
+			{else}
+			<td>无效</td>
+			<td>无效</td>
+		   {/if}
+{/loop} 
+{/pc}	
+			<td>
+<input type="button" onclick="window.location.href='index.php?m=member&c=content&a=delete&catid={$info[catid]}&id={$info[id]}'"class="anniu1" value="删除"/></td>
+		  </tr>
+  {/loop}
+ 
+ 
+   <tr>
+    <td colspan="4">{$pages}</td>
+   
+  </tr>
+</table>
+
+</div></div>
+</div></div></div>
+</div>
+{template "member","footer_s"}
+</body>
+</html>

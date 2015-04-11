@@ -1,0 +1,44 @@
+<?php defined('IN_PHPCMS') or exit('No permission resources.'); ?><div class="top">
+  <div class="top_main">
+    <div class="logo_quyu">
+	<div class="logo"><a href="#"><img src="<?php echo IMG_PATH;?>online/logo.jpg" /></a></div>
+	<div class="kuang"></div>
+	<div class="biaoyu"><img src="<?php echo IMG_PATH;?>online/biaoyu.jpg" /></div>
+	</div>
+    <div class="dianhua_quyu">
+	  <div class="zhuce">
+	    <ul>
+		<li><a href="index.php?m=member&c=index&a=logout">退出</a> |</li>
+		<li><a href="<?php echo APP_PATH;?>index.php?m=member&c=index">我的主页</a></li>
+		</ul>
+	  </div>
+	  <div class="dianhua"><img src="<?php echo IMG_PATH;?>online/dianhua.jpg" /></div>
+	</div>
+  </div>
+</div>
+<div class="dh">
+  <div class="dh_main">
+    <ul>
+	  <li class="wu"><a href="<?php echo APP_PATH;?>index.php">首页</a></li>
+	  <li><a href="<?php echo APP_PATH;?>index.php?m=content&c=index&a=lists&catid=18">初始向导</a></li>
+	  <li><a href="<?php echo APP_PATH;?>index.php?m=content&c=index&a=lists&catid=17">会话套餐</a></li>
+	  <li><a href="<?php echo APP_PATH;?>index.php?m=content&c=index&a=lists&catid=10">讲师阵营</a></li>
+	  <li><a href="<?php echo APP_PATH;?>index.php?m=content&c=index&a=lists&catid=15">简单预约</a></li>
+	   <li><a href="<?php echo APP_PATH;?>index.php?m=content&c=index&a=lists&catid=29">教材一览</a></li>
+	  <li><a href="http://www.eng.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=24">关于我们</a></li>	 
+	</ul>
+	<a><img src="<?php echo IMG_PATH;?>online/rss.jpg" /></a>
+	<div class="yuyue"><a href="<?php echo APP_PATH;?>index.php?m=content&c=index&a=lists&catid=15"><img src="<?php echo IMG_PATH;?>online/yuyue.jpg" /></a></div>
+  </div>
+</div>
+
+<link href="<?php echo CSS_PATH;?>reset.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo CSS_PATH;?>member.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo CSS_PATH;?>table_form.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo JS_PATH;?>jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo JS_PATH;?>member_common.js"></script>
+
+<?php if(isset($show_validator)) { ?>
+<script type="text/javascript" src="<?php echo JS_PATH;?>formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<?php echo JS_PATH;?>formvalidatorregex.js" charset="UTF-8"></script>
+<?php } ?>
